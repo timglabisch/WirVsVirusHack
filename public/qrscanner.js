@@ -57,6 +57,20 @@ class QR {
 
 }
 
+function sendRequest(url, options, jsonCallback) {
+    fetch(url, options).then(response => {
+        const contentType = response.headers.get("content-type")
+        if (contentType && contentType.indexOf("application/json") !== -1) {
+            response.json().then(jsonCallback)
+        }
+        else { //display error
+            response.text().then(text => {
+                document.body.innerHTML += "<p> Error: " + text + "</p>"
+            })
+        }
+    })
+}
+
 // Use facingMode: environment to attemt to get the front camera on phones
 navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
     video.srcObject = stream;
@@ -64,7 +78,35 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
     video.play();
     var q = new QR(video);
     q.onNewData(function(code) {
-       console.log(code);
+        const data = {
+            id: code
+        }
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    
+        sendRequest('/readForm', options, data => {
+            //TODO: Beuatiful output
+            const output = document.createElement("div")
+            output.innerHTML += "<p> Firstname: " + data.firstname + "</p>"
+            output.innerHTML += "<p> Lastname: " + data.lastname + "</p>"
+            for (f of data.files) {
+                if (f.type.indexOf("image") != -1)
+                    output.innerHTML += '<img src="getFile/' + f.fileID + "/>"
+                else {
+                    let description = ""
+                    if (f.description)
+                        description = '<label for="button">' + f.description + '</label>'
+                    output.innerHTML += '<form action="getFile/' + f.fileID + '">' + description + '<input type="submit" name="button" value="Download"/></form>'
+                }
+            }
+            document.body.appendChild(output)
+        })
     });
 });
 

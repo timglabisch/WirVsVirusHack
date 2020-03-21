@@ -1,118 +1,193 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <title>WirVsVirusHack</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
 
-<div class="hint">
-    <a href="qrcode_reader.html">QR Code auslesen</a> | QR Code erstellen - Diese Seite kann z.b. von LKW Fahrern genutzt werden um QR-Codes zu generieren
-</div>
-
-<div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1>Bescheinigung für Warenverkehr</h1>
-    <p class="lead">
-        Hiermit wird bescheinigt, dass die aufgeführte Person für den Warenverkehr relevant die Grenze übertritt.
-    </p>
-</div>
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <form id="qrform">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <h4>Ihre Daten</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="1">Vorname</label>
-                        <input type="text" class="form-control" id="1" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="2">Nachname</label>
-                        <input type="text" class="form-control" id="2" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="3">Staat</label>
-                        <input type="text" class="form-control" id="3" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="4">PLZ</label>
-                        <input type="text" class="form-control" id="4" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="6">Staatsangehörigkeit</label>
-                        <input type="text" class="form-control" id="6" placeholder="" value="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <h4>Daten Ihrer Arbeitsstätte</h4>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <label for="7">Firmenbezeichnung</label>
-                        <input type="text" class="form-control" id="7" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="8">Staat</label>
-                        <input type="text" class="form-control" id="8" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="9">PLZ</label>
-                        <input type="text" class="form-control" id="9" placeholder="" value="">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <input id="generate_qr_code" type="button" class="btn btn-primary" value="QR-Code generieren">
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="col-md-4"></div>
+    <div class="hint">
+        <a href="qrcode_reader.html">QR Code auslesen</a> | QR Code erstellen - Diese Seite kann z.b. von LKW Fahrern
+        genutzt werden um QR-Codes zu generieren
     </div>
-</div>
 
-<div id="qrcode" style="display:none"></div>
+    <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72"
+            height="72">
+        <h1>Bescheinigung für Warenverkehr</h1>
+        <p class="lead">
+            Hiermit wird bescheinigt, dass die aufgeführte Person für den Warenverkehr relevant die Grenze übertritt.
+        </p>
+    </div>
 
-<script language="javascript" src="lz-string.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script>
-    $(document).ready(function () {
 
-        $('#generate_qr_code').on("click", function () {
-            $('#qrcode canvas').remove();
-            $('#qrcode').show();
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="qrform">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h4>Ihre Daten</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="1">Vorname</label>
+                            <input type="text" class="form-control" id="1" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="2">Nachname</label>
+                            <input type="text" class="form-control" id="2" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="3">Staat</label>
+                            <input type="text" class="form-control" id="3" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="4">PLZ</label>
+                            <input type="text" class="form-control" id="4" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="6">Staatsangehörigkeit</label>
+                            <input type="text" class="form-control" id="6" placeholder="" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <h4>Daten Ihrer Arbeitsstätte</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <label for="7">Firmenbezeichnung</label>
+                            <input type="text" class="form-control" id="7" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="8">Staat</label>
+                            <input type="text" class="form-control" id="8" placeholder="" value="">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="9">PLZ</label>
+                            <input type="text" class="form-control" id="9" placeholder="" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input id="generate_qr_code" type="button" class="btn btn-primary"
+                                value="QR-Code generieren">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+    <form name="fileForm" onsubmit="return sendFile()">
+        <input type="file" name="file" required />
+        <input type="text" name="description" placeholder="Description" />
+        <input type="submit" value="Send" />
+    </form>
+    <div id="qrcode" style="display:none"></div>
 
-            var items = [];
-            $('#qrform input').each(function(i, v) {
-                if (jQuery(v).attr('type') == "button") {
-                    return;
+    <script language="javascript" src="lz-string.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        function sendRequest(url, options, jsonCallback) {
+            fetch(url, options).then(response => {
+                const contentType = response.headers.get("content-type")
+                console.log("1")
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    console.log("1")
+                    response.json().then(jsonCallback)
                 }
+                else { //display error
+                    response.text().then(text => {
+                        document.body.innerHTML += "<p> Error: " + text + "</p>"
+                    })
+                }
+            })
+        }
 
-                items.push(jQuery(v).val());
+        files = []
+
+        $(document).ready(function () {
+
+            $('#generate_qr_code').on("click", function () {
+                $('#qrcode canvas').remove();
+                $('#qrcode').show();
+
+                var items = [];
+                $('#qrform input').each(function (i, v) {
+                    if (jQuery(v).attr('type') == "button") {
+                        return;
+                    }
+
+                    items.push(jQuery(v).val());
+                });
+                const data = {}
+                data.firstname = items[0]
+                data.lastname = items[1]
+                data.country = items[2]
+                data.zipcode = items[3]
+                data.nationality = items[4]
+                data.company = items[5]
+                data.companyCountr = items[6]
+                data.companyZipCode = items[7]
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+                sendRequest('/submitForm', options, data => {
+                    document.body.innerHTML += "<p> Entry ID: " + data.id + "</p>"
+                    $('#qrcode').qrcode(data.id)
+                })
+                files = []
             });
-            $('#qrcode').qrcode(JSON.stringify(items));
         });
-    });
 
-    $('#qrcode').on('click', function() {
-        $('#qrcode').hide();
-    });
+        $('#qrcode').on('click', function () {
+            $('#qrcode').hide();
+        });
 
-</script>
+        function sendFile() {
+            const form = document.forms['fileForm']
+            const file = form['file'].files[0];
+
+            //create post data
+            const formData = new FormData();
+            formData.append("file", file);
+            const options = {
+                method: 'POST',
+                body: formData
+            }
+
+            sendRequest('/submitFile', options, data => {
+                data.description = form['description'].value
+                files.push(data)
+                document.body.innerHTML += "<p>Uploaded!</p>"
+            })
+            return false //prevents reload
+        }
+
+    </script>
 </body>
+
 </html>

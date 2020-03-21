@@ -1,0 +1,24 @@
+{
+  "name": "wir-vs-virus-grenzkontrolle",
+  "version": "1.0.0",
+  "description": "A basic implementation of our project for the 'wir vs Virus' Hackathon",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baugid/wirvsvirus"
+  },
+  "main": "app.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "postinstall": "mkdir userfiles &",
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "uid-generator": "^2.0.0",
+    "express-fileupload": "^1.1.6",
+    "unique-slug": "^2.0.2"
+  }
+}
