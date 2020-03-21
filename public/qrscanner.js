@@ -44,6 +44,7 @@ function tick() {
             drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
             outputMessage.hidden = true;
             outputData.parentElement.hidden = false;
+            alert(code.data);
             outputData.innerText = LZString.decompress(code.data);
             if(!outputContainer.classList.contains("redbg")) {
                 outputContainer.classList.add("redbg")
