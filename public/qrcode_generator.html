@@ -33,27 +33,23 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="self_firstname">Vorname</label>
+                        <label for="1">Vorname</label>
                         <input type="text" class="form-control" id="1" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="self_lastname">Nachname</label>
+                        <label for="2">Nachname</label>
                         <input type="text" class="form-control" id="2" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="self_state">Staat</label>
+                        <label for="3">Staat</label>
                         <input type="text" class="form-control" id="3" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="self_state">PLZ</label>
+                        <label for="4">PLZ</label>
                         <input type="text" class="form-control" id="4" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="self_state">Ort</label>
-                        <input type="text" class="form-control" id="5" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="self_state">Staatsangehörigkeit</label>
+                        <label for="6">Staatsangehörigkeit</label>
                         <input type="text" class="form-control" id="6" placeholder="" value="">
                     </div>
                 </div>
@@ -64,20 +60,16 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="work_company">Firmenbezeichnung</label>
+                        <label for="7">Firmenbezeichnung</label>
                         <input type="text" class="form-control" id="7" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="work_state">Staat</label>
+                        <label for="8">Staat</label>
                         <input type="text" class="form-control" id="8" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="work_plz">PLZ</label>
+                        <label for="9">PLZ</label>
                         <input type="text" class="form-control" id="9" placeholder="" value="">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="work_ort">Ort</label>
-                        <input type="text" class="form-control" id="10" placeholder="" value="">
                     </div>
                 </div>
                 <div class="row">
@@ -99,26 +91,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    (function ($) {
-        $.fn.serializeFormJSON = function () {
-
-            var o = {};
-            var a = this.serializeArray();
-            $.each(a, function () {
-                if (o[this.name]) {
-                    if (!o[this.name].push) {
-                        o[this.name] = [o[this.name]];
-                    }
-                    o[this.name].push(this.value || '');
-                } else {
-                    o[this.name] = this.value || '';
-                }
-            });
-            return o;
-        };
-    })(jQuery);
-</script>
 <script>
 
     $(document).ready(function () {
@@ -135,9 +107,7 @@
                 items[jQuery(v).attr('id')] = jQuery(v).val();
             });
             //COMPRESS
-            var string = JSON.stringify(items);
-            var compressed = string;
-            $('#qrcode').qrcode(compressed);
+            $('#qrcode').qrcode(JSON.stringify(items));
         });
     });
 
