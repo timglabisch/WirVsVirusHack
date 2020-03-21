@@ -25,23 +25,62 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Lala</h4>
-            <form>
+            <form id="qrform">
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="feld1">First name</label>
-                        <input type="text" class="form-control" id="feld1" placeholder="" value="" required="" >
-                        <div class="invalid-feedback">
-                            Valid first name is required.
-                        </div>
+                        <h4>Ihre Daten</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="self_firstname">Vorname</label>
+                        <input type="text" class="form-control" id="self_firstname" placeholder="" value="" required="" >
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="field2">Last name</label>
-                        <input type="text" class="form-control" id="field2" placeholder="" value="" required="">
-                        <div class="invalid-feedback">
-                            Valid last name is required.
-                        </div>
+                        <label for="self_lastname">Nachname</label>
+                        <input type="text" class="form-control" id="self_lastname" placeholder="" value="" required="">
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="self_state">Staat</label>
+                        <input type="text" class="form-control" id="self_state" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="self_state">PLZ</label>
+                        <input type="text" class="form-control" id="self_plz" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="self_state">Ort</label>
+                        <input type="text" class="form-control" id="self_ort" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="self_state">Staatsangehörigkeit</label>
+                        <input type="text" class="form-control" id="self_nationality" placeholder="" value="" required="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h4>Daten Ihrer Arbeitsstätte</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="work_company">Firmenbezeichnung</label>
+                        <input type="text" class="form-control" id="work_company" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="work_state">Staat</label>
+                        <input type="text" class="form-control" id="work_state" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="work_plz">PLZ</label>
+                        <input type="text" class="form-control" id="work_plz" placeholder="" value="" required="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="work_ort">Ort</label>
+                        <input type="text" class="form-control" id="work_ort" placeholder="" value="" required="">
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6 mb-3">
                         <input id="generate_qr_code" type="button" class="btn btn-primary" value="QR-Code generieren">
                     </div>
@@ -59,12 +98,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    (function ($) {
+        $.fn.serializeFormJSON = function () {
+
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+    })(jQuery);
+</script>
 <script>
     $(document).ready(function () {
+
         $('#generate_qr_code').on("click", function () {
+            console.log(jQuery('#qrform').serializeFormJSON());
             $('#qrcode canvas').remove();
-            var text1 = $("#feld1").val();
-            var text2 = $("#feld2").val();
+            var text1 = $("#self_firstname").val();
+            var text2 = $("#self_lastname").val();
             ergo = text1 + " " + text2;
             $('#qrcode').qrcode(ergo);
         });
