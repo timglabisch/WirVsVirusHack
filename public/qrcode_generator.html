@@ -100,6 +100,10 @@
 
             var items = [];
             $('#qrform input').each(function(i, v) {
+                if (jQuery(v).attr('type') == "button") {
+                    return;
+                }
+
                 items.push(jQuery(v).val());
             });
             //COMPRESS
