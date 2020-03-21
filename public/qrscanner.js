@@ -2,9 +2,6 @@ var video = document.createElement("video");
 var canvasElement = document.getElementById("canvas");
 var canvas = canvasElement.getContext("2d");
 var loadingMessage = document.getElementById("loadingMessage");
-var outputContainer = document.getElementById("output");
-var outputMessage = document.getElementById("outputMessage");
-var outputData = document.getElementById("outputData");
 
 class QR {
     constructor(video, canvas) {
@@ -58,13 +55,32 @@ class QR {
 }
 
 // Use facingMode: environment to attemt to get the front camera on phones
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(function (stream) {
     video.srcObject = stream;
     video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
     video.play();
     var q = new QR(video);
-    q.onNewData(function(code) {
-       console.log(code);
+    q.onNewData(function (code) {
+        jQuery('#canvas').hide();
+        jQuery('.scanned').show();
+        try {
+            var codeContents = JSON.parse(code.data);
+        } catch (e) {
+            if (console) {
+                console.log(e);
+            }
+            return;
+        }
+
+        codeContents.forEach(function (item, i) {
+            jQuery('#' + (i  + 1)).val(item);
+        });
     });
 });
+
+jQuery('.scanned').click(function() {
+    jQuery('#canvas').show();
+    jQuery('.scanned').hide();
+});
+
 

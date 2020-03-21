@@ -15,7 +15,6 @@
 </div>
 
 
-
 <div class="container">
     <div class="row">
         <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
@@ -25,9 +24,66 @@
             <div hidden><b>Data:</b> <span id="outputData"></span></div>
         </div>
     </div>
+
+    <div class="row scanned" style="display: none">
+        <form id="qrform">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h4>Daten</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="1">Vorname</label>
+                    <input type="text" class="form-control" id="1" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="2">Nachname</label>
+                    <input type="text" class="form-control" id="2" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="3">Staat</label>
+                    <input type="text" class="form-control" id="3" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="4">PLZ</label>
+                    <input type="text" class="form-control" id="4" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="6">Staatsangehörigkeit</label>
+                    <input type="text" class="form-control" id="6" placeholder="" value="" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <h4>Daten der Arbeitsstätte</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <label for="7">Firmenbezeichnung</label>
+                    <input type="text" class="form-control" id="7" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="8">Staat</label>
+                    <input type="text" class="form-control" id="8" placeholder="" value="" disabled>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="9">PLZ</label>
+                    <input type="text" class="form-control" id="9" placeholder="" value="" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <input type="button" class="btn btn-primary" value="Neu Scannen">
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
 <script src='https://cozmo.github.io/jsQR/jsQR.js'></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="qrscanner.js"></script>
 
 </body>
