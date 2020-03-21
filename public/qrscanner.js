@@ -27,11 +27,9 @@ class QR {
     }
 
     tick() {
-        loadingMessage.innerText = "⌛ Loading video...";
+        // loadingMessage.innerText = "⌛ Loading video...";
         if (this.video.readyState === video.HAVE_ENOUGH_DATA) {
             loadingMessage.hidden = true;
-            canvasElement.hidden = false;
-            outputContainer.hidden = false;
 
             canvasElement.height = this.video.videoHeight;
             canvasElement.width = this.video.videoWidth;
