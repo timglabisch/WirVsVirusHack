@@ -81,11 +81,10 @@
         </div>
         <div class="col-md-4"></div>
     </div>
-
-    <div id="qrcode">
-
-    </div>
 </div>
+
+<div id="qrcode" style="display:none"></div>
+
 <script language="javascript" src="lz-string.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
@@ -96,7 +95,7 @@
 
         $('#generate_qr_code').on("click", function () {
             $('#qrcode canvas').remove();
-
+            $('#qrcode').show();
 
             var items = [];
             $('#qrform input').each(function(i, v) {
@@ -106,10 +105,12 @@
 
                 items.push(jQuery(v).val());
             });
-            //COMPRESS
-            items.pop();
             $('#qrcode').qrcode(JSON.stringify(items));
         });
+    });
+
+    $('#qrcode').on('click', function() {
+        $('#qrcode').hide();
     });
 
 </script>
