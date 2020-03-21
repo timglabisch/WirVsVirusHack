@@ -41,7 +41,7 @@ Je nach Autorisierung könnten unterschiedliche Daten hinterlegt werden. Grunds�
 Beispielsweise könnten andere Staaten verschlüsselt ohne jegliche weitere Beschränkung Daten hinterlegen welche nur von ihnen oder von autorisierten Personen abgegriffen werden können.
 Durch digitale Signierprozesse wäre es sogar möglich, Teilinformationen offline auf dem Endgerät des Nutzers (Fahrers) zu hinterlegen. 
 
-![alt text](doc/anreicherung.png)
+![Diagramm Anreicherung Daten](doc/anreicherung.png)
 
 
 ## Auslesen der Daten
@@ -51,3 +51,5 @@ Dritte können ihre hinterlegten Daten mit einem privaten Token abgreifen und en
 Es wäre denkbar ausländischen Behörden Teilzugriffe auf die Daten zu geben.
 Grundsätzlich könnte man aber jedem (völlig ohne Registrierung) die Frage beantworten, ob ein gewisser QR-Code laut deutschem Stand passieren darf oder nicht.
 So könnten beispielsweise polnische Behörden, ohne jegliche Registrierung ihren Grenzschützern ermöglichen, Daten zu denen Entschlüsselungscodes vorliegen, abzufragen.
+
+![Diagramm Auslesen Daten, an Kontrolle dargestellt](doc/kontrolle.png)
