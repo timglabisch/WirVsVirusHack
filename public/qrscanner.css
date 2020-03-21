@@ -43,5 +43,5 @@ body {
 
 
 .redbg {
-    background: red;
+    background: red !important;
 }
