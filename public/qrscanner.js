@@ -45,14 +45,14 @@ function tick() {
             outputMessage.hidden = true;
             outputData.parentElement.hidden = false;
             outputData.innerText = code.data;
-            if(!outputData.classList.contains("redbg")) {
-                outputData.classList.add("redbg")
+            if(!outputContainer.classList.contains("redbg")) {
+                outputContainer.classList.add("redbg")
             }
         } else {
             outputMessage.hidden = true;
             outputData.parentElement.hidden = false;
-            if(outputData.classList.contains("redbg")) {
-                outputData.classList.remove("redbg")
+            if(outputContainer.classList.contains("redbg")) {
+                outputContainer.classList.remove("redbg")
             }
         }
     }
