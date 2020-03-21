@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+<div class="scale-150 lg:scale-100">
+    <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-gray-800">
+        <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline">
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900">QR-Code generieren</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300">QR-Code auslesen</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+                            <button @click="open = !open" class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid">
+                                <img class="h-8 w-8 rounded-full" src="profile.png" alt="" />
+                            </button>
+                            <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                                <div class="py-1 rounded-md bg-white shadow-xs">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mike Meyer</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Imaginäre GmbH</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ausloggen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold leading-tight text-gray-900">
+                QR-Code generieren
+            </h2>
+        </div>
+    </header>
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <!-- Replace with your content -->
+            <form id="qrform">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h4>Ihre Daten</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="1">Vorname</label>
+                        <input type="text" class="form-control" id="1" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="2">Nachname</label>
+                        <input type="text" class="form-control" id="2" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="3">Staat</label>
+                        <input type="text" class="form-control" id="3" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="4">PLZ</label>
+                        <input type="text" class="form-control" id="4" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="6">Staatsangehörigkeit</label>
+                        <input type="text" class="form-control" id="6" placeholder="" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <h4>Daten Ihrer Arbeitsstätte</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="7">Firmenbezeichnung</label>
+                        <input type="text" class="form-control" id="7" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="8">Staat</label>
+                        <input type="text" class="form-control" id="8" placeholder="" value="">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="9">PLZ</label>
+                        <input type="text" class="form-control" id="9" placeholder="" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input id="generate_qr_code" type="button" class="btn btn-primary" value="QR-Code generieren">
+                    </div>
+                </div>
+            </form>
+            <!-- /End replace -->
+        </div>
+    </main>
+</div>
+</body>
+</html>
