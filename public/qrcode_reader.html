@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <title>WirVsVirusHack</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://raw.githubusercontent.com/cozmo/jsQR/master/dist/jsQR.js"></script>
+    <link rel="stylesheet" href="qrscanner.css">
 </head>
 <body>
 
@@ -17,10 +19,19 @@
 
 <div class="container">
     <div class="row">
-
+        <h1>jsQR Demo</h1>
+        <a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
+        <p>Pure JavaScript QR code decoding library.</p>
+        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <canvas id="canvas" hidden></canvas>
+        <div id="output" hidden>
+            <div id="outputMessage">No QR code detected.</div>
+            <div hidden><b>Data:</b> <span id="outputData"></span></div>
+        </div>
     </div>
 </div>
 
+<script src="qrscanner.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
