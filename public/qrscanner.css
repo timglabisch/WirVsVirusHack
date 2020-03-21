@@ -40,3 +40,8 @@ body {
 #noQRFound {
     text-align: center;
 }
+
+
+.redbg {
+    background: red;
+}
