@@ -107,6 +107,7 @@
                 items[jQuery(v).attr('id')] = jQuery(v).val();
             });
             //COMPRESS
+            delete(items.generate_qr_code);
             $('#qrcode').qrcode(JSON.stringify(items));
         });
     });
