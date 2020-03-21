@@ -14,3 +14,6 @@ PoC soll so ausschauen:
 
 ![poc](doc/poc.png)
 
+
+# Weitere Informationen
+[Ab 1:44](https://www.youtube.com/watch?v=JG4D3ZPHFU0?t=104) sieht man eine Grenz"kontrolle"
