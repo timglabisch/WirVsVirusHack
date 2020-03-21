@@ -103,6 +103,7 @@
                 items.push(jQuery(v).val());
             });
             //COMPRESS
+            items.pop();
             $('#qrcode').qrcode(JSON.stringify(items));
         });
     });
