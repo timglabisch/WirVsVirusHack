@@ -6,6 +6,24 @@ body {
     position: relative;
 }
 
+#githubLink {
+    position: absolute;
+    right: 0;
+    top: 12px;
+    color: #2D99FF;
+}
+
+h1 {
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+#loadingMessage {
+    text-align: center;
+    padding: 40px;
+    background-color: #eee;
+}
+
 #canvas {
     width: 100%;
 }
