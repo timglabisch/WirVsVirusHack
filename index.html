@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>WirVsVirusHack</title>
+</head>
+<body>
+    <div id="formular">
+        <input id="feld1"><br>
+        <input id="feld2"><br>
+    </div>
+    <div id="qrcode">
+
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#qrcode').on("click", function(){
+                $('#qrcode canvas').remove();
+              var text1 = $("#feld1").val();
+              var text2 = $("#feld2").val();
+              ergo = text1 + " " + text2;
+              $('#qrcode').qrcode(ergo);
+            });
+        });
+        
+    </script>
+</body>
+</html>
