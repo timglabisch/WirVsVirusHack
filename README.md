@@ -41,6 +41,9 @@ Je nach Autorisierung könnten unterschiedliche Daten hinterlegt werden. Grunds�
 Beispielsweise könnten andere Staaten verschlüsselt ohne jegliche weitere Beschränkung Daten hinterlegen welche nur von ihnen oder von autorisierten Personen abgegriffen werden können.
 Durch digitale Signierprozesse wäre es sogar möglich, Teilinformationen offline auf dem Endgerät des Nutzers (Fahrers) zu hinterlegen. 
 
+![alt text](doc/anreicherung.png)
+
+
 ## Auslesen der Daten
 
 Grundsätzlich könnten autorisierte Instanzen wie Behörden die Daten hinter dem QR-Code auslesen.
