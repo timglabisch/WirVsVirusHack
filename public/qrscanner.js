@@ -8,13 +8,13 @@ var outputData = document.getElementById("outputData");
 
 class QR {
     constructor(video, canvas) {
-        this.onNewData = null;
+        this.newData = null;
         this.video = video;
         requestAnimationFrame(this.tick.bind(this));
     }
 
     onNewData(cb) {
-        this.onNewData = cb;
+        this.newData = cb;
     }
 
     drawLine(begin, end, color) {
@@ -38,26 +38,19 @@ class QR {
             var code = jsQR(imageData.data, imageData.width, imageData.height, {
                 inversionAttempts: "dontInvert",
             });
-            if (code) {
-                console.log('is code...');
-                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
-                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
-                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
-                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-                outputMessage.hidden = true;
-                outputData.parentElement.hidden = false;
-                outputData.innerText = code.data;
-                if(!outputContainer.classList.contains("redbg")) {
-                    outputContainer.classList.add("redbg")
-                }
-            } else {
-                console.log('no code...');
-                outputMessage.hidden = true;
-                outputData.parentElement.hidden = false;
-                if(outputContainer.classList.contains("redbg")) {
-                    outputContainer.classList.remove("redbg")
-                }
+            if (!code) {
+                requestAnimationFrame(this.tick.bind(this));
+                return;
             }
+
+            if (this.newData) {
+                this.newData(code)
+            }
+
+            this.drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+            this.drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+            this.drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+            this.drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
         }
         requestAnimationFrame(this.tick.bind(this));
     }
@@ -69,6 +62,9 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
     video.srcObject = stream;
     video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
     video.play();
-    (new QR(video))
+    var q = new QR(video);
+    q.onNewData(function(code) {
+       console.log(code);
+    });
 });
 
