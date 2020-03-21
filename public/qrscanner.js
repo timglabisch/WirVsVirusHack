@@ -61,7 +61,7 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(f
     video.play();
     var q = new QR(video);
     q.onNewData(function (code) {
-            $('html, body').animate({
+            jQuery('html, body').animate({
                 scrollTop: $("#outputforms").offset().top
             }, 0);
         try {
