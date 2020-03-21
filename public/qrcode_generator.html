@@ -34,27 +34,27 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="self_firstname">Vorname</label>
-                        <input type="text" class="form-control" id="self_firstname" placeholder="" value="">
+                        <input type="text" class="form-control" id="1" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_lastname">Nachname</label>
-                        <input type="text" class="form-control" id="self_lastname" placeholder="" value="">
+                        <input type="text" class="form-control" id="2" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Staat</label>
-                        <input type="text" class="form-control" id="self_state" placeholder="" value="">
+                        <input type="text" class="form-control" id="3" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">PLZ</label>
-                        <input type="text" class="form-control" id="self_plz" placeholder="" value="">
+                        <input type="text" class="form-control" id="4" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Ort</label>
-                        <input type="text" class="form-control" id="self_ort" placeholder="" value="">
+                        <input type="text" class="form-control" id="5" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Staatsangehörigkeit</label>
-                        <input type="text" class="form-control" id="self_nationality" placeholder="" value="">
+                        <input type="text" class="form-control" id="6" placeholder="" value="">
                     </div>
                 </div>
                 <div class="row">
@@ -65,19 +65,19 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="work_company">Firmenbezeichnung</label>
-                        <input type="text" class="form-control" id="work_company" placeholder="" value="">
+                        <input type="text" class="form-control" id="7" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_state">Staat</label>
-                        <input type="text" class="form-control" id="work_state" placeholder="" value="">
+                        <input type="text" class="form-control" id="8" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_plz">PLZ</label>
-                        <input type="text" class="form-control" id="work_plz" placeholder="" value="">
+                        <input type="text" class="form-control" id="9" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_ort">Ort</label>
-                        <input type="text" class="form-control" id="work_ort" placeholder="" value="">
+                        <input type="text" class="form-control" id="10" placeholder="" value="">
                     </div>
                 </div>
                 <div class="row">
@@ -136,7 +136,7 @@
             });
             //COMPRESS
             var string = JSON.stringify(items);
-            var compressed = LZString.compress(string);
+            var compressed = string;
             $('#qrcode').qrcode(compressed);
         });
     });
