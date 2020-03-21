@@ -10,7 +10,7 @@
 
 #qrcode canvas {
     max-width: 900px;
-    width:100%;
+    width:90%;
     z-index: 2;
     margin:0 auto;
     position: absolute;
