@@ -45,9 +45,15 @@ function tick() {
             outputMessage.hidden = true;
             outputData.parentElement.hidden = false;
             outputData.innerText = code.data;
+            if(!outputData.classList.contains("redbg")) {
+                outputData.classList.add("redbg")
+            }
         } else {
-            outputMessage.hidden = false;
-            outputData.parentElement.hidden = true;
+            outputMessage.hidden = true;
+            outputData.parentElement.hidden = false;
+            if(outputData.classList.contains("redbg")) {
+                outputData.classList.remove("redbg")
+            }
         }
     }
     requestAnimationFrame(tick);
