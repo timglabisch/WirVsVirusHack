@@ -79,7 +79,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
     var q = new QR(video);
     q.onNewData(function(code) {
         const data = {
-            id: code
+            id: code.data
         }
 
         const options = {
@@ -91,13 +91,13 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
         }
     
         sendRequest('/readForm', options, data => {
-            //TODO: Beuatiful output
+            //TODO: Beautiful output
             const output = document.createElement("div")
             output.innerHTML += "<p> Firstname: " + data.firstname + "</p>"
             output.innerHTML += "<p> Lastname: " + data.lastname + "</p>"
             for (f of data.files) {
                 if (f.type.indexOf("image") != -1)
-                    output.innerHTML += '<img src="getFile/' + f.fileID + "/>"
+                    output.innerHTML += '<img src="getFile/' + f.fileID + '"/>'
                 else {
                     let description = ""
                     if (f.description)
