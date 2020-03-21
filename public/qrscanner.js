@@ -62,7 +62,7 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(f
     var q = new QR(video);
     q.onNewData(function (code) {
             $('html, body').animate({
-                scrollTop: $("outputforms").offset().top
+                scrollTop: $("#outputforms").offset().top
             }, 0);
         try {
             var codeContents = JSON.parse(code.data);
