@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <link rel="apple-touch-icon" type="image/png" href="https://static.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+
+
+    <title>CodePen - A Pen by  Wietse Neven</title>
+
+
+
+
+
+    <style>
+        body {
+            font-family: 'Ropa Sans', sans-serif;
+            color: #333;
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #githubLink {
+            position: absolute;
+            right: 0;
+            top: 12px;
+            color: #2D99FF;
+        }
+
+        h1 {
+            margin: 10px 0;
+            font-size: 40px;
+        }
+
+        #loadingMessage {
+            text-align: center;
+            padding: 40px;
+            background-color: #eee;
+        }
+
+        #canvas {
+            width: 100%;
+        }
+
+        #output {
+            margin-top: 20px;
+            background: #eee;
+            padding: 10px;
+            padding-bottom: 0;
+        }
+
+        #output div {
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        #noQRFound {
+            text-align: center;
+        }
+    </style>
+
+    <script>
+        window.console = window.console || function(t) {};
+    </script>
+
+
+
+    <script>
+        if (document.location.search.match(/type=embed/gi)) {
+            window.parent.postMessage("resize", "*");
+        }
+    </script>
+
+
+</head>
+
+<body translate="no" >
+<h1>jsQR Demo</h1>
+<a id="githubLink" href="https://github.com/cozmo/jsQR">View documentation on Github</a>
+<p>Pure JavaScript QR code decoding library.</p>
+<div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+<canvas id="canvas" hidden></canvas>
+<div id="output" hidden>
+    <div id="outputMessage">No QR code detected.</div>
+    <div hidden><b>Data:</b> <span id="outputData"></span></div>
+</div>
+<script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js"></script>
+
+<script src='https://cozmo.github.io/jsQR/jsQR.js'></script>
+
+<script id="rendered-js" >
+    var video = document.createElement("video");
+    var canvasElement = document.getElementById("canvas");
+    var canvas = canvasElement.getContext("2d");
+    var loadingMessage = document.getElementById("loadingMessage");
+    var outputContainer = document.getElementById("output");
+    var outputMessage = document.getElementById("outputMessage");
+    var outputData = document.getElementById("outputData");
+
+    function drawLine(begin, end, color) {
+        canvas.beginPath();
+        canvas.moveTo(begin.x, begin.y);
+        canvas.lineTo(end.x, end.y);
+        canvas.lineWidth = 4;
+        canvas.strokeStyle = color;
+        canvas.stroke();
+    }
+
+    // Use facingMode: environment to attemt to get the front camera on phones
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
+        video.srcObject = stream;
+        video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+        video.play();
+        requestAnimationFrame(tick);
+    });
+
+    function tick() {
+        loadingMessage.innerText = "⌛ Loading video...";
+        if (video.readyState === video.HAVE_ENOUGH_DATA) {
+            loadingMessage.hidden = true;
+            canvasElement.hidden = false;
+            outputContainer.hidden = false;
+
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+            var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+            var code = jsQR(imageData.data, imageData.width, imageData.height, {
+                inversionAttempts: "dontInvert" });
+
+            if (code) {
+                drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+                drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+                drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+                drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+                outputMessage.hidden = true;
+                outputData.parentElement.hidden = false;
+                outputData.innerText = code.data;
+            } else {
+                outputMessage.hidden = false;
+                outputData.parentElement.hidden = true;
+            }
+        }
+        requestAnimationFrame(tick);
+    }
+    //# sourceURL=pen.js
+</script>
+
+
+
+
+</body>
+
+</html>
