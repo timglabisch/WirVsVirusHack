@@ -5,10 +5,9 @@
     <meta name="viewport" initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <title>WirVsVirusHack</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script type="text/javascript" src="instascan.min.js"></script>
-
+    <script src="https://raw.githubusercontent.com/cozmo/jsQR/master/dist/jsQR.js"></script>
+    <script src="qrscanner.js"></script>
 </head>
 <body>
 
@@ -20,22 +19,11 @@
 
 <div class="container">
     <div class="row">
-        <video id="preview"></video>
-        <script type="text/javascript">
-            let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-            scanner.addListener('scan', function (content) {
-                alert(content);
-            });
-            Instascan.Camera.getCameras().then(function (cameras) {
-                if (cameras.length > 0) {
-                    scanner.start(cameras[0]);
-                } else {
-                    console.error('No cameras found.');
-                }
-            }).catch(function (e) {
-                console.error(e);
-            });
-        </script>
+        <canvas id="canvas" hidden></canvas>
+        <div id="output" hidden>
+            <div id="outputMessage">No QR code detected.</div>
+            <div hidden><b>Data:</b> <span id="outputData"></span></div>
+        </div>
     </div>
 </div>
 
