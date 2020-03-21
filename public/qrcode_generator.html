@@ -42,6 +42,9 @@
                             Valid last name is required.
                         </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <input id="generate_qr_code" type="button" class="btn btn-primary" value="QR-Code generieren">
+                    </div>
                 </div>
             </form>
         </div>
@@ -58,7 +61,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
-        $('#qrcode').on("click", function () {
+        $('#generate_qr_code').on("click", function () {
             $('#qrcode canvas').remove();
             var text1 = $("#feld1").val();
             var text2 = $("#feld2").val();
