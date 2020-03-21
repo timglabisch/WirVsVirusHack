@@ -61,8 +61,6 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(f
     video.play();
     var q = new QR(video);
     q.onNewData(function (code) {
-        jQuery('#canvas').hide();
-        jQuery('.scanned').show();
         try {
             var codeContents = JSON.parse(code.data);
         } catch (e) {
@@ -77,10 +75,3 @@ navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(f
         });
     });
 });
-
-jQuery('.scanned').click(function() {
-    jQuery('#canvas').show();
-    jQuery('.scanned').hide();
-});
-
-
