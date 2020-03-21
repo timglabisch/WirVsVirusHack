@@ -1,6 +1,8 @@
 # WirVsVirusHack Grenzkontrolle
 Bei Hackathon WirVsVirus entstandenes Repo bzgl. Speicherung und Bearbeitung von Formularen zur Einreise
 
+PoC ist [HIER](https://hack.niklas.codes/qrcode_generator.html) erreichbar.
+
 Devcode Link: [HIER](https://devpost.com/software/1_036_grenzkontrolle_abfertigung_grenzkontrolle)
 Decvode einladungs link: [HIER](https://devpost.com/software/1_036_grenzkontrolle_abfertigung_grenzkontrolle/joins/FwtIZ3XI45SHel2EHo7ZoA)
 
