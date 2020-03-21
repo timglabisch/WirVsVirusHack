@@ -34,27 +34,27 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="self_firstname">Vorname</label>
-                        <input type="text" class="form-control" id="self_firstname" placeholder="" value="" required="" >
+                        <input type="text" class="form-control" id="self_firstname" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_lastname">Nachname</label>
-                        <input type="text" class="form-control" id="self_lastname" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="self_lastname" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Staat</label>
-                        <input type="text" class="form-control" id="self_state" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="self_state" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">PLZ</label>
-                        <input type="text" class="form-control" id="self_plz" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="self_plz" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Ort</label>
-                        <input type="text" class="form-control" id="self_ort" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="self_ort" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="self_state">Staatsangehörigkeit</label>
-                        <input type="text" class="form-control" id="self_nationality" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="self_nationality" placeholder="" value="">
                     </div>
                 </div>
                 <div class="row">
@@ -65,19 +65,19 @@
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="work_company">Firmenbezeichnung</label>
-                        <input type="text" class="form-control" id="work_company" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="work_company" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_state">Staat</label>
-                        <input type="text" class="form-control" id="work_state" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="work_state" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_plz">PLZ</label>
-                        <input type="text" class="form-control" id="work_plz" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="work_plz" placeholder="" value="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="work_ort">Ort</label>
-                        <input type="text" class="form-control" id="work_ort" placeholder="" value="" required="">
+                        <input type="text" class="form-control" id="work_ort" placeholder="" value="">
                     </div>
                 </div>
                 <div class="row">
@@ -119,15 +119,22 @@
     })(jQuery);
 </script>
 <script>
+
     $(document).ready(function () {
 
         $('#generate_qr_code').on("click", function () {
-            console.log(jQuery('#qrform').serializeFormJSON());
             $('#qrcode canvas').remove();
-            var text1 = $("#self_firstname").val();
-            var text2 = $("#self_lastname").val();
-            ergo = text1 + " " + text2;
-            $('#qrcode').qrcode(ergo);
+
+
+            var items = {};
+            $('#qrform input').each(function(i, v) {
+                if (jQuery(v).val() == "") {
+                    return;
+                }
+                items[jQuery(v).attr('id')] = jQuery(v).val();
+            });
+
+            $('#qrcode').qrcode(JSON.stringify(items));
         });
     });
 
