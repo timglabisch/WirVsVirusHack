@@ -5,7 +5,7 @@ e-BorderControl:in  ist ein Proof of Concept für schnellere Abwicklung von Gren
 
 Proof of Concept ist [HIER](https://hack.niklas.codes/qrcode_gen_tw.html) erreichbar.
 
-Devcode Link: [HIER](https://devpost.com/software/01_036_grenzkontrollen_e-bordercontrol-in)
+Devpost Link: [HIER](https://devpost.com/software/01_036_grenzkontrollen_e-bordercontrol-in)
 
 # Weitere Informationen
 [Ab 1:44](https://www.youtube.com/watch?v=JG4D3ZPHFU0?t=104) sieht man eine Grenz"kontrolle"
