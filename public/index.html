@@ -1,22 +1,65 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta name="viewport" initial-scale="1.0">
     <title>WirVsVirusHack</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
+
 <body>
-
-<div class="hint">
-    <a href="qrcode_read_tw.html">QR Code auslesen</a> | <a href="qrcode_gen_tw.html">QR Code erstellen</a>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+    <div class="scale-150 lg:scale-100">
+        <nav x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-gray-800">
+            <div class="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="hidden md:block">
+                            <div class="ml-10 flex items-baseline">
+                                <a href="qrcode_gen_tw.html"
+                                    class="px-3 py-2 rounded-md text-sm font-medium text-white">QR-Code:in
+                                    generieren</a>
+                                <a href="qrcode_read_tw.html"
+                                    class="px-3 py-2 rounded-md text-sm font-medium text-gray-300">QR-Code:in
+                                    auslesen</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-4 flex items-center md:ml-6">
+                            <div @click.away="open = false" class="ml-3 relative" x-data="{ open: false }">
+                                <button @click="open = !open"
+                                    class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid">
+                                    <img class="h-8 w-8 rounded-full" src="profile.png" alt="" />
+                                </button>
+                                <div x-show="open" x-transition:enter="transition ease-out duration-100"
+                                    x-transition:enter-start="transform opacity-0 scale-95"
+                                    x-transition:enter-end="transform opacity-100 scale-100"
+                                    x-transition:leave="transition ease-in duration-75"
+                                    x-transition:leave-start="transform opacity-100 scale-100"
+                                    x-transition:leave-end="transform opacity-0 scale-95"
+                                    class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                                    <div class="py-1 rounded-md bg-white shadow-xs">
+                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mike
+                                            Meyer</a>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Imaginäre
+                                            GmbH</a>
+                                        <a href="#"
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Ausloggen</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
 
 </body>
+
 </html>
