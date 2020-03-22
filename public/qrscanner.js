@@ -55,26 +55,26 @@ class QR {
 }
 
 // Use facingMode: environment to attemt to get the front camera on phones
-navigator.mediaDevices.getUserMedia({video: {facingMode: "environment"}}).then(function (stream) {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
     video.srcObject = stream;
     video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
     video.play();
     var q = new QR(video);
     q.onNewData(function (code) {
-            jQuery('html, body').animate({
-                scrollTop: $("#outputforms").offset().top
-            }, 0);
+        jQuery('html, body').animate({
+            scrollTop: $("#outputforms").offset().top
+        }, 0);
         try {
             var codeContents = JSON.parse(code.data);
         } catch (e) {
             if (console) {
-                console.log(e);
+                console.error(e);
             }
             return;
         }
 
         codeContents.forEach(function (item, i) {
-            jQuery('#' + (i  + 1)).val(item);
+            jQuery('#' + (i + 1)).val(item);
         });
     });
 });
