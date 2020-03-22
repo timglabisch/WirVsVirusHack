@@ -2,9 +2,6 @@ var video = document.createElement("video");
 var canvasElement = document.getElementById("canvas");
 var canvas = canvasElement.getContext("2d");
 var loadingMessage = document.getElementById("loadingMessage");
-var outputContainer = document.getElementById("output");
-var outputMessage = document.getElementById("outputMessage");
-var outputData = document.getElementById("outputData");
 
 class QR {
     constructor(video, canvas) {
@@ -62,22 +59,21 @@ function sendRequest(url, options, jsonCallback) {
         const contentType = response.headers.get("content-type")
         if (contentType && contentType.indexOf("application/json") !== -1) {
             response.json().then(jsonCallback)
-        }
-        else { //display error
+        } else {
             response.text().then(text => {
-                document.body.innerHTML += "<p> Error: " + text + "</p>"
+                console.error(text)
             })
         }
     })
 }
 
 // Use facingMode: environment to attemt to get the front camera on phones
-navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function (stream) {
     video.srcObject = stream;
     video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
     video.play();
     var q = new QR(video);
-    q.onNewData(function(code) {
+    q.onNewData(function (code) {
         const data = {
             id: code.data
         }
@@ -89,24 +85,17 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).th
             },
             body: JSON.stringify(data)
         }
-    
-        sendRequest('/readForm', options, data => {
-            //TODO: Beautiful output
-            const output = document.createElement("div")
-            output.innerHTML += "<p> Firstname: " + data.firstname + "</p>"
-            output.innerHTML += "<p> Lastname: " + data.lastname + "</p>"
-            for (f of data.files) {
-                if (f.type.indexOf("image") != -1)
-                    output.innerHTML += '<img src="getFile/' + f.fileID + '"/>'
-                else {
-                    let description = ""
-                    if (f.description)
-                        description = '<label for="button">' + f.description + '</label>'
-                    output.innerHTML += '<form action="getFile/' + f.fileID + '">' + description + '<input type="submit" name="button" value="Download"/></form>'
-                }
-            }
-            document.body.appendChild(output)
-        })
-    });
-});
 
+        sendRequest('/readForm', options, data => {
+            data.content.forEach((item, i) => {
+                jQuery('#' + (i + 1)).val(item);
+            })
+
+            const fileoutput = $('#filelist')[0]
+            fileoutput.innerHTML = ""
+            data.files.forEach((item, i) => {
+                fileoutput.innerHTML += '<a class="btn" target="_blank" href="getFile/' + item.fileID + '">Datei ' + (i + 1) + '</a>'
+            })
+        })
+    })
+})
